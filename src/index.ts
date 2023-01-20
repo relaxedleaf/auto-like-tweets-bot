@@ -17,6 +17,7 @@ let me: UserV1;
 let nextReset = 0;
 let totalLiked = 0;
 let prevProcessFinished = false;
+let searchWordIndex = 0;
 
 const main = async () => {
 	updateProcessStatus(ProcessStatus.STARTED);
@@ -32,11 +33,7 @@ const main = async () => {
 		me = await twitterClient.currentUser();
 
 		// Fetch tweets data
-		const randomNumber = Math.floor(
-			Math.random() * (searchWords.length - 1)
-		);
-		const searchWord = searchWords[randomNumber];
-		console.log(searchWord);
+		const searchWord = getSearchWord();
 		const tweets = await twitterClient.v2.search({
 			query: searchWord,
 			sort_order: 'recency',
@@ -87,6 +84,19 @@ const main = async () => {
 	}
 	updateProcessStatus(ProcessStatus.FINISHED);
 };
+
+function getSearchWord(): string {
+	const searchWord = searchWords[searchWordIndex];
+
+	if (searchWordIndex + 1 >= searchWord.length) {
+		searchWordIndex = 0;
+	} else {
+		searchWordIndex++;
+	}
+
+	console.log(searchWord);
+	return searchWord;
+}
 
 async function like(tweet: TweetV2) {
 	const {

@@ -1,15 +1,4 @@
 const searchWords = [
-	'nextjs',
-	'typescript',
-	'javascript',
-	'backstage.io',
-	'rustlang',
-	'reactjs',
-	'web3',
-	'nft',
-	'ethereum',
-	'bnb',
-	'solidity',
 	'nodejs',
 	'python',
 	'java',
@@ -38,6 +27,17 @@ const searchWords = [
 	'wordpress',
 	'learnweb3dao',
 	'linux',
+	'nextjs',
+	'typescript',
+	'javascript',
+	'backstage.io',
+	'rustlang',
+	'reactjs',
+	'web3',
+	'nft',
+	'ethereum',
+	'bnb',
+	'solidity',
 ];
 
 export default searchWords;

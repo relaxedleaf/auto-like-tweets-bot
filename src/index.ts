@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import Twitter, { ApiResponseError, TweetV2, UserV1 } from 'twitter-api-v2';
 
 import ProcessStatus from './types/ProcessStatus';
+import searchWords from './constants/searchWords';
 
 dotenv.config();
 
@@ -16,29 +17,6 @@ let me: UserV1;
 let nextReset = 0;
 let totalLiked = 0;
 let prevProcessFinished = false;
-
-const searchWords = [
-	'nextjs',
-	'typescript',
-	'javascript',
-	'backstage.io',
-	'rustlang',
-	'reactjs',
-	'web3',
-	'nft',
-	'ethereum',
-	'bnb',
-	'solidity',
-	'nodejs',
-	'python',
-	'java',
-	'c#',
-	'angularjs',
-	'vue',
-	'web component',
-	'svelte',
-	'emberjs',
-];
 
 const main = async () => {
 	updateProcessStatus(ProcessStatus.STARTED);
@@ -71,7 +49,7 @@ const main = async () => {
 		// Keep on fetching tweet and liking it until no remaining API calls are left
 		for await (const tweet of tweets) {
 			let err: any = null;
-
+			// Currently the Like API only provides 50 calls per 15 minutes and might throw service not avaliable error
 			try {
 				await like(tweet);
 			} catch (err1) {

@@ -58,6 +58,7 @@ const main = async () => {
 			Math.random() * (searchWords.length - 1)
 		);
 		const searchWord = searchWords[randomNumber];
+		console.log(searchWord);
 		const tweets = await twitterClient.v2.search({
 			query: searchWord,
 			sort_order: 'recency',

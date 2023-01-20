@@ -30,6 +30,14 @@ const searchWords = [
 	'data structure',
 	'algorithms',
 	'machine learning',
+	'full stack',
+	'frontend',
+	'backend',
+	'css',
+	'html',
+	'wordpress',
+	'learnweb3dao',
+	'linux',
 ];
 
 export default searchWords;

@@ -99,7 +99,7 @@ async function like(tweet: TweetV2) {
 function wait(): Promise<boolean> {
 	return new Promise((res, rej) => {
 		console.log('Waiting for 2 minutes');
-		setTimeout(async () => {
+		setTimeout(() => {
 			res(true);
 		}, 120000);
 	});

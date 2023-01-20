@@ -17,6 +17,29 @@ let nextReset = 0;
 let totalLiked = 0;
 let prevProcessFinished = false;
 
+const searchWords = [
+	'nextjs',
+	'typescript',
+	'javascript',
+	'backstage.io',
+	'rustlang',
+	'reactjs',
+	'web3',
+	'nft',
+	'ethereum',
+	'bnb',
+	'solidity',
+	'nodejs',
+	'python',
+	'java',
+	'c#',
+	'angularjs',
+	'vue',
+	'web component',
+	'svelte',
+	'emberjs',
+];
+
 const main = async () => {
 	updateProcessStatus(ProcessStatus.STARTED);
 	try {
@@ -31,8 +54,12 @@ const main = async () => {
 		me = await twitterClient.currentUser();
 
 		// Fetch tweets data
+		const randomNumber = Math.floor(
+			Math.random() * (searchWords.length - 1)
+		);
+		const searchWord = searchWords[randomNumber];
 		const tweets = await twitterClient.v2.search({
-			query: 'nextjs',
+			query: searchWord,
 			sort_order: 'recency',
 		});
 

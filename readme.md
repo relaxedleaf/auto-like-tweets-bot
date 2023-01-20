@@ -14,6 +14,8 @@ This project features a simple Twitter Bot that acts on your behave to periodica
 
 -   Get the secrets from [Twitter API](https://developer.twitter.com/en/docs/twitter-api) and make sure that you requested `elevated access`
 
+-   Customize your custom tweet searches by changing keywords in `/src/constants/searchWords.ts`
+
 <br>
 
 ## Commands

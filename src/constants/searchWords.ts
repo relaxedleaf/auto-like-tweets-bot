@@ -65,6 +65,7 @@ const devOps = [
 	'CI/CD',
 	'GitHub',
 	'GitLab',
+	'MicroServices',
 ];
 
 const searchWords = [

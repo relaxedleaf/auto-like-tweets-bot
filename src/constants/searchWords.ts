@@ -1,3 +1,5 @@
+import { shuffle } from '../utils/ArrayUtils';
+
 const programmingLanguages = [
 	'Golang',
 	'HTML',
@@ -73,15 +75,17 @@ const devOps = [
 	'MicroServices',
 ];
 
-const searchWords = [
-	programmingLanguages,
-	databases,
-	frameworks,
-	libraries,
-	ides,
-	hotTopics,
-	designTools,
-	devOps,
-].flat();
+const searchWords = shuffle(
+	[
+		programmingLanguages,
+		databases,
+		frameworks,
+		libraries,
+		ides,
+		hotTopics,
+		designTools,
+		devOps,
+	].flat()
+);
 
 export default searchWords;

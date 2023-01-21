@@ -46,7 +46,6 @@ const hotTopics = [
 	'Artificial Intelligence',
 	'FANNG',
 	'Data Structure',
-	'Algorithms',
 	'Machine Learning',
 	'LearnWeb3DAO',
 	'Frontend',

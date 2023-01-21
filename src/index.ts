@@ -95,7 +95,7 @@ function getSearchWord(): string {
 	}
 
 	console.log(searchWord);
-	return searchWord;
+	return searchWord.toLowerCase();
 }
 
 async function like(tweet: TweetV2) {

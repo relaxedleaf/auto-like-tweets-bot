@@ -1,4 +1,5 @@
 const searchWords = [
+	'learnweb3dao',
 	'nodejs',
 	'python',
 	'java',
@@ -25,7 +26,6 @@ const searchWords = [
 	'css',
 	'html',
 	'wordpress',
-	'learnweb3dao',
 	'linux',
 	'nextjs',
 	'typescript',

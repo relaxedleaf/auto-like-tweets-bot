@@ -15,6 +15,8 @@ const programmingLanguages = [
 	'PHP Programming',
 ];
 
+const databases = ['MySQL', 'PostgreSQL', 'MongoDB'];
+
 const frameworks = [
 	'Laravel',
 	'ReactJS', //Could be library :) Ik
@@ -33,9 +35,9 @@ const ides = ['Andriod Studio', 'VS Code'];
 
 const hotTopics = [
 	'Web3',
-	'Full stack',
-	'Web component',
-	'Data science',
+	'Full Stack',
+	'Web Component',
+	'Data Science',
 	'AI',
 	'OpenAI',
 	'ChatGPT',
@@ -53,6 +55,9 @@ const hotTopics = [
 	'Ethereum',
 	'BNB',
 	'100DaysOfCode',
+	'LeetCode',
+	'BigData',
+	'Blockchain',
 ];
 
 const designTools = ['Figma', 'Photoshop'];
@@ -70,6 +75,7 @@ const devOps = [
 
 const searchWords = [
 	programmingLanguages,
+	databases,
 	frameworks,
 	libraries,
 	ides,

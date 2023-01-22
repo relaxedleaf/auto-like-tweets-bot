@@ -74,7 +74,7 @@ const main = async () => {
 
 			if (remaining <= 0) {
 				updateProcessStatus(ProcessStatus.FINISHED);
-				break;
+				return;
 			}
 			remaining--;
 		}

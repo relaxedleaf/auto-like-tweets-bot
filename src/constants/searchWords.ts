@@ -7,8 +7,6 @@ const programmingLanguages = [
 	'Solidity',
 	'Swift Programming',
 	'Rustlang',
-	'C#',
-	'C++',
 	'Nodejs',
 	'Python Programming',
 	'Java Programming',
@@ -47,17 +45,12 @@ const hotTopics = [
 	'Data Structure',
 	'Machine Learning',
 	'LearnWeb3DAO',
-	'Frontend',
-	'Backend',
-	'JSON',
 	'Linux',
-	'NFT',
-	'Ethereum',
-	'BNB',
 	'100DaysOfCode',
 	'LeetCode',
 	'BigData',
 	'Blockchain',
+	'Firebase',
 ];
 
 const designTools = ['Figma', 'Photoshop'];

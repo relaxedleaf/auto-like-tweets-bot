@@ -88,7 +88,7 @@ const main = async () => {
 function getSearchWord(): string {
 	const searchWord = searchWords[searchWordIndex];
 
-	if (searchWordIndex + 1 >= searchWord.length) {
+	if (searchWordIndex + 1 >= searchWords.length) {
 		searchWordIndex = 0;
 	} else {
 		searchWordIndex++;

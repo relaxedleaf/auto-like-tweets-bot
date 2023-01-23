@@ -52,6 +52,13 @@ const main = async () => {
 			} catch (err1) {
 				console.log(err1);
 				err = err1;
+				if (
+					err &&
+					err instanceof ApiResponseError &&
+					err.code === 403
+				) {
+					continue;
+				}
 				while (
 					err &&
 					err instanceof ApiResponseError &&

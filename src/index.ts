@@ -14,7 +14,6 @@ const twitterClient = new Twitter({
 	accessSecret: process.env.ACCESS_TOKEN_SECRET!,
 }).readWrite;
 let me: UserV1;
-let nextReset = 0;
 let totalLiked = 0;
 let prevProcessFinished = false;
 let searchWordIndex = 0;
@@ -22,13 +21,6 @@ let searchWordIndex = 0;
 const main = async () => {
 	updateProcessStatus(ProcessStatus.STARTED);
 	try {
-		// Get current time in milliseconds
-		const now = new Date().getTime();
-		if (now <= nextReset) {
-			updateProcessStatus(ProcessStatus.FINISHED);
-			return;
-		}
-
 		// Fetch authenticated user
 		me = await twitterClient.currentUser();
 
@@ -39,14 +31,9 @@ const main = async () => {
 			sort_order: 'recency',
 		});
 
-		// Get remaining API calls count and the next reset time in seconds
-		let { remaining, reset } = tweets.rateLimit;
-		nextReset = reset * 1000; //Cache the next reset time
-
-		// Keep on fetching tweet and liking it until no remaining API calls are left
+		// Keep on fetching tweets if there are 403 & 503 errors
 		for await (const tweet of tweets) {
 			let err: any = null;
-			// Currently the Like API only provides 50 calls per 15 minutes and might throw service not avaliable error
 			try {
 				await like(tweet);
 			} catch (err1) {
@@ -55,14 +42,15 @@ const main = async () => {
 				if (
 					err &&
 					err instanceof ApiResponseError &&
-					err.code === 403
+					err.code === 403 &&
+					err.data.detail === 'You cannot like a Tweet that has been edited.'
 				) {
 					continue;
 				}
 				while (
 					err &&
 					err instanceof ApiResponseError &&
-					err.code === 503
+					err.code === 503 //Service unavaliable
 				) {
 					try {
 						await wait();
@@ -73,23 +61,16 @@ const main = async () => {
 						console.error(err);
 					}
 				}
-				if (err) {
-					updateProcessStatus(ProcessStatus.FINISHED);
-					return;
-				}
-			}
-
-			if (remaining <= 0) {
 				updateProcessStatus(ProcessStatus.FINISHED);
-				return;
+				break;
 			}
-			remaining--;
+			updateProcessStatus(ProcessStatus.FINISHED);
+			break;
 		}
 	} catch (err) {
 		console.error(err);
 		updateProcessStatus(ProcessStatus.FINISHED);
 	}
-	updateProcessStatus(ProcessStatus.FINISHED);
 };
 
 function getSearchWord(): string {
@@ -112,13 +93,13 @@ async function like(tweet: TweetV2) {
 	handleIncrementLikes(liked);
 }
 
-//Wait 2 minutes
+//Wait 5 minutes
 function wait(): Promise<boolean> {
 	return new Promise((res, rej) => {
-		console.log('Waiting for 2 minutes');
+		console.log('Waiting for 5 minutes');
 		setTimeout(() => {
 			res(true);
-		}, 120000);
+		}, 300000);
 	});
 }
 
@@ -140,9 +121,16 @@ function updateProcessStatus(status: ProcessStatus) {
 	}
 }
 
+console.log(searchWords);
 main();
 setInterval(() => {
+	let delay = Math.floor(Math.random() * (45 + 1)); //0 - 45 minutes
+	console.log(`Waiting ${delay} mins`);
+
+	delay *= 60000;
 	if (prevProcessFinished) {
-		main();
+		setTimeout(() => {
+			main();
+		}, delay);
 	}
-}, 960000); //16 minutes (Twitter refreshes every 15 minute)
+}, 900000); //15 minutes

@@ -24,7 +24,6 @@ const frameworks = [
 	'EmberJS',
 	'Vue',
 	'AngularJS',
-	'Wordpress',
 	'NextJS',
 	'Backstage.io',
 ];

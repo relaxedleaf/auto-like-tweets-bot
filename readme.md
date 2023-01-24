@@ -14,6 +14,8 @@ This project features a simple Twitter Bot that acts on your behave to periodica
 
 -   Get the secrets from [Twitter API](https://developer.twitter.com/en/docs/twitter-api) and make sure that you requested `elevated access`
 
+-   Modify the timezone to best suit your location
+
 -   Customize your custom tweet searches by changing keywords in `/src/constants/searchWords.ts`
 
 <br>
@@ -31,10 +33,12 @@ This project features a simple Twitter Bot that acts on your behave to periodica
 
 ## Dependencies
 
-| Command          | Description                                             |
-| ---------------- | ------------------------------------------------------- |
-| `dotenv`         | To manage environment variables                         |
-| `twitter-api-v2` | A handy Twitter API client that supports v1 and v2 APIs |
+| Command          | Description                                                     |
+| ---------------- | --------------------------------------------------------------- |
+| `dotenv`         | To manage environment variables                                 |
+| `twitter-api-v2` | A handy Twitter API client that supports v1 and v2 APIs         |
+| `date-fns`       | Library to format and deal with Date objects                    |
+| `date-fns-tz`    | Sub package of `date-fns` used to deal with Date with timezones |
 
 <br>
 

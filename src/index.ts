@@ -1,9 +1,11 @@
 import * as dotenv from 'dotenv';
 
 import Twitter, { ApiResponseError, TweetV2, UserV1 } from 'twitter-api-v2';
+import {addMilliseconds, format} from 'date-fns';
 
 import ProcessStatus from './types/ProcessStatus';
 import searchWords from './constants/searchWords';
+import { timezonedDate } from './utils/DateUtil';
 
 dotenv.config();
 
@@ -126,8 +128,10 @@ main();
 setInterval(() => {
 	let delay = Math.floor(Math.random() * (45 + 1)); //0 - 45 minutes
 	console.log(`Waiting ${delay} mins`);
-
 	delay *= 60000;
+	const nextExecutation = format(timezonedDate(addMilliseconds(new Date(), delay)), 'M/d/yyyy hh:mm a');
+	console.log(`Will execute in: ${nextExecutation}`);
+
 	if (prevProcessFinished) {
 		setTimeout(() => {
 			main();

@@ -36,7 +36,6 @@ const hotTopics = [
 	'Web3',
 	'Full Stack',
 	'Web Component',
-	'AI',
 	'OpenAI',
 	'ChatGPT',
 	'Artificial Intelligence',

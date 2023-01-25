@@ -56,7 +56,7 @@ const designTools = ['Figma', 'Photoshop'];
 const devOps = [
 	'Docker',
 	'Kubernetes',
-	'Azure',
+	'Microsoft Azure',
 	'AWS',
 	'CI/CD',
 	'GitHub',
